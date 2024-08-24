@@ -26,7 +26,7 @@ class updateMovieRequest extends FormRequest
             'director' => 'sometimes|required|string|max:255',
             'genre' => 'sometimes|required|string|max:100',
             'release_year' => 'sometimes|required|digits:4|min:1820|integer',
-            'description' => 'sometimes|nullable|string',
+            'description' => 'sometimes|string',
         ];
     }
 }
