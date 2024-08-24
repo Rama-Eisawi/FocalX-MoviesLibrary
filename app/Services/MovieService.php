@@ -20,4 +20,14 @@ class MovieService
     {
         $movie->delete();
     }
+    public function sortMoviesByReleaseYear($sort)
+    {
+        // Set default order to 'asc' if the provided order is empty
+        $sort = empty($sort) ? 'asc' : $sort;
+
+        //the Invalid Argument exception has been proccessed in Handler file.
+
+        // Retrieve and sort movies by release_year
+        return Movie::orderBy('release_year', $sort)->get();
+    }
 }

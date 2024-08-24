@@ -10,4 +10,9 @@ class Movie extends Model
 {
     use HasFactory;
     protected $fillable = ['title', 'director', 'genre', 'release_year', 'description'];
+
+    public function scopeByReleasYear()
+    {
+        
+    }
 }

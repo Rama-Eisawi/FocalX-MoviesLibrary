@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\movieRequest\addMovieRequest;
-use App\Http\Requests\movieRequest\updateMovieRequest;
+use App\Http\Requests\movieRequest\{addMovieRequest, updateMovieRequest};
 use App\Models\Movie;
 use App\Services\MovieService;
 use Illuminate\Http\Request;
@@ -18,10 +17,14 @@ class MovieController extends Controller
     /**
      * get all movies
      */
-    public function index()
+    public function index(Request $request)
     {
+        // Get the order from the request, default to 'asc'
+        $sort = $request->get('sort', 'asc');
 
-        $movies = Movie::all();
+        // Use the service to get sorted movies 
+        $movies = $this->movieService->sortMoviesByReleaseYear($sort);
+        //$movies = Movie::all();
         return response()->json(['message' => 'The list of all movies: ', 'status' => 200, 'data' => $movies]);
     }
 
@@ -69,4 +72,5 @@ class MovieController extends Controller
         $this->movieService->deleteMovie($movie);
         return response()->json(['message' => 'The movie deleted successfully', 'status' => 204, 'data' => null]);
     }
+    //Note: Not Found Exception has been proccessed in Handler file.
 }
