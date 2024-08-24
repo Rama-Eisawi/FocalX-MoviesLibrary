@@ -19,13 +19,23 @@ class MovieController extends Controller
      */
     public function index(Request $request)
     {
-        // Get the order from the request, default to 'asc'
-        $sort = $request->get('sort', 'asc');
+        // Get the order from the request, default to 'desc'
+        $sort = $request->get('sort', 'desc');
+        $genre = $request->get('genre');
+        $director = $request->get('director');
 
-        // Use the service to get sorted movies 
-        $movies = $this->movieService->sortMoviesByReleaseYear($sort);
-        //$movies = Movie::all();
-        return response()->json(['message' => 'The list of all movies: ', 'status' => 200, 'data' => $movies]);
+        // Use the service to filter movies by genre or director if provided
+        if ($genre) {
+            $movies = $this->movieService->filterByGenre($genre);
+        } else if ($director) {
+            $movies = $this->movieService->filterByDirector($director);
+        }
+        //then sort the filtered movies
+        $sortedMovies = $this->movieService->sortByReleaseYear($sort);
+        $listOfMovies = $sortedMovies->intersect($movies);
+
+        // Return the filtered and sorted movies
+        return response()->json(['message' => 'The list of movies:', 'status' => 200, 'data' => $listOfMovies]);
     }
 
     /**
