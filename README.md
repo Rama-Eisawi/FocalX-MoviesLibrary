@@ -20,9 +20,12 @@ The Movie Library API is a RESTful API built with Laravel for managing a movie l
   - Manage errors effectively.
 
 ## Factory and Seeder
-**Factories**
+**Factories**:
 Factories are used to generate test data for your application.
 
-**Seeders**
+**Seeders**:
 Seeders are used to populate your database with initial data.
+
+## The Postman Collection:
+https://documenter.getpostman.com/view/18956619/2sAXjF8uje
 
