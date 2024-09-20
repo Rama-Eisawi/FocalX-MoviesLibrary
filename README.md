@@ -29,3 +29,6 @@ Seeders are used to populate your database with initial data.
 ## The Postman Collection:
 https://documenter.getpostman.com/view/18956619/2sAXjF8uje
 
+## The ERD:
+https://drawsql.app/teams/smart-semicolons/diagrams/movies-library
+
